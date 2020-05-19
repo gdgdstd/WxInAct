@@ -16,7 +16,7 @@ class Frame(wx.Frame):
 
 
 class App(wx.App):
-    def OnInit(self, redirect=False, filename=None):
+    def OnInit(self):
         Frame().Show()
         return True
 
