@@ -23,7 +23,7 @@ class Frame(wx.Frame):
                 ("退出(&X)", "退出程序", self.OnClose),
             ),
             (
-                "编辑(&E),",
+                "编辑(&E)",
                 ("复制(&C)\tCtrl+C", "复制", self.OnEditCopy),
                 ("剪切(&X)\tCtrl+X", "剪切", self.OnEditCut),
                 ("粘贴(&P)\tCtrl+V", "粘贴", self.OnEditPaste),
