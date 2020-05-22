@@ -1,10 +1,11 @@
+"""This is a gird"""
 import random
 import string
 import wx
 import wx.grid
 
 
-def _gen_data():
+def m_gen_data():
     def to_format1():
         length = random.randrange(1, 3)
         text = "".join(random.sample(string.ascii_letters, length))
@@ -34,50 +35,64 @@ def _gen_data():
     return data
 
 
-def _gen_labels():
+def m_gen_labels():
     return ("Last", "First")
 
 
 class LineupTable(wx.grid.GridTableBase):
+    """LineupTable"""
 
-    data = _gen_data()
-    labels = _gen_labels()
+    m_data = m_gen_data()
+    m_labels = m_gen_labels()
 
     def GetNumberRows(self):
-        return len(self.data)
+        """1"""
+        return len(self.m_data)
 
     def GetNumberCols(self):
-        return len(self.data[0]) - 1
+        """1"""
+        return len(self.m_data[0]) - 1
 
     def GetColLabelValue(self, col):
-        return self.labels[col]
+        """1"""
+        return self.m_labels[col]
 
     def GetRowLabelValue(self, row):
-        return self.data[row][0]
+        """1"""
+
+        return self.m_data[row][0]
 
     def IsEmptyCell(self, cell):
+        """1"""
         return False
 
     def GetValue(self, row, col):
-        return self.data[row][col + 1]
+        """1"""
+        return self.m_data[row][col + 1]
 
     def SetValue(self, row, col, value):
-        pass
+        """1"""
 
 
 class SimpleGrid(wx.grid.Grid):
+    """A Simple Grid"""
+
     def __init__(self, parent):
         super().__init__(parent, -1)
 
         self.SetTable(LineupTable())
+        print("ok")
 
 
 class Frame(wx.Frame):
+    """ A Frame"""
+
     def __init__(self):
         super().__init__(None, -1, "表格", size=(275, 275))
 
         panel = wx.Panel(self, -1)
-        self.grid = SimpleGrid(panel)
+        panel.SetBackgroundColour("white")
+        # grid = SimpleGrid(panel)
 
 
 if __name__ == "__main__":
