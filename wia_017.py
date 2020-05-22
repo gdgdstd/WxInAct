@@ -45,6 +45,8 @@ class LineupTable(wx.grid.GridTableBase):
     m_data = m_gen_data()
     m_labels = m_gen_labels()
 
+    # data = m_data
+
     def GetNumberRows(self):
         """1"""
         return len(self.m_data)
@@ -62,7 +64,7 @@ class LineupTable(wx.grid.GridTableBase):
 
         return self.m_data[row][0]
 
-    def IsEmptyCell(self, cell):
+    def IsEmptyCell(self, row, col):
         """1"""
         return False
 
@@ -80,7 +82,7 @@ class SimpleGrid(wx.grid.Grid):
     def __init__(self, parent):
         super().__init__(parent, -1)
 
-        self.SetTable(LineupTable())
+        self.SetTable(LineupTable(), True)
         print("ok")
 
 
@@ -88,11 +90,9 @@ class Frame(wx.Frame):
     """ A Frame"""
 
     def __init__(self):
-        super().__init__(None, -1, "表格", size=(275, 275))
+        super().__init__(None, -1, "表格", size=(600, 400))
 
-        panel = wx.Panel(self, -1)
-        panel.SetBackgroundColour("white")
-        # grid = SimpleGrid(panel)
+        grid = SimpleGrid(self)
 
 
 if __name__ == "__main__":
