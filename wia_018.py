@@ -43,3 +43,61 @@ class GenericTable(wx.grid.GridTableBase):
         super().__init__()
 
         self.data = data
+        self.row_labels = row_labels
+        self.col_labels = col_labels
+
+    def GetNumberRows(self):
+        return len(self.data)
+
+    def GetNumberCols(self):
+        return len(self.data[0])
+
+    def GetColLabelValue(self, col):
+        if self.col_labels:
+            return self.col_labels[col]
+
+    def GetRowLabelValue(self, row):
+        if self.row_labels:
+            return self.row_labels[row]
+
+    def IsEmptyCell(self, row, col):
+        return False
+
+    def GetValue(self, row, col):
+        return self.data[row][col]
+
+    def SetValue(self, row, col, value):
+        pass
+
+
+data = (
+    "Bob Dernier".split(),
+    "Ryne Sandberg".split(),
+    "Keith Moreland".split(),
+    "Ron Cey".split(),
+)
+
+col_labels = "Last First".split()
+row_labels = "CF 2B LF 1B".split()
+
+
+class SimpleGrid(wx.grid.Grid):
+    def __init__(self, parent):
+        super().__init__(parent, -1)
+
+        table = GenericTable(data, row_labels, col_labels)
+
+        self.SetTable(table, True)
+
+
+class Frame(wx.Frame):
+    def __init__(self):
+        super().__init__(None, -1, "A Generic Grid", size=(600, 400))
+
+        grid = SimpleGrid(self)
+
+
+if __name__ == "__main__":
+    app = wx.App(False)
+    Frame().Show(True)
+    app.MainLoop()
