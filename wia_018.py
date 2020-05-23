@@ -87,7 +87,7 @@ class SimpleGrid(wx.grid.Grid):
 
         table = GenericTable(data, row_labels, col_labels)
 
-        self.SetTable(table, True)
+        self.SetTable(table, True)  # 注意，原文中没有True, 会导致退出。
 
 
 class Frame(wx.Frame):
