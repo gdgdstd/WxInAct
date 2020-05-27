@@ -14,9 +14,9 @@ db_not_exists = not os.path.exists(db_file)
 
 sql = rf"""
     insert into hkyy_cxd_proudcts (
-        {('id product_code product_name product_comment type_no authorized_no type specific '
-        'package_specific package_unit physic_detail_type code_verion code_level '
-        ' package_ratio resource_code op_user bak').split()}
+        id,productcode,productname,productcomment,typeno,authorizedno,type,specific,
+        packagespecific,packageunit,physicdetailtype,codeverion,codelevel,
+        packageratio,resourcecode,opuser,bak
     )
     values (
         null, :productCode, :productName, :comment, :typeNo, :authorizedNo,
