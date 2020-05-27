@@ -89,10 +89,10 @@ class Frame(wx.Frame):
         self.model.set("Fred", "Flinstones")
 
     def OnWilm(self, evt):
-        pass
+        self.model.set("Wilm", "Tonewary")
 
     def OnBarc(self, evt):
-        pass
+        self.model.set("Barc", "Hualaw")
 
 
 if __name__ == "__main__":
