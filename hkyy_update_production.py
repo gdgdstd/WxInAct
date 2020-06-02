@@ -64,6 +64,7 @@ def ReadProductXML(file, output_file=sys.stdout):
     with open(product_file, "rt", encoding="utf-8") as fin:
         tree = ET.parse(fin)
         products = []
+        products_dict = dict()
 
         for product in GetAllProduct(tree):
             # for k, v in product.attrib.items():
@@ -88,15 +89,20 @@ def ReadProductXML(file, output_file=sys.stdout):
                     d.update(sub_product.attrib.items())
                     # print(d)
                     products.append(d)
-    return products
+                    if d['codeLevel'] == '1':
+                        products_dict[d['typeNo']] = d
+                        
+    return products, products_dict
 
 
 def main():
 
-    products = ReadProductXML(product_file)
-    if db_not_exists:
-        CreateNewDB()
-    InsertIntoDB(db_file, products)
+    products, products_dict = ReadProductXML(product_file)
+    print(products_dict)
+    #if db_not_exists:
+    #    CreateNewDB()
+    
+    #InsertIntoDB(db_file, products)
 
 
 if __name__ == "__main__":
